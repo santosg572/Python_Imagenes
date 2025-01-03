@@ -59,45 +59,42 @@ def main():
     xx = []
     yy = []
 
-    np1=38
-    teta = np.linspace(0, 2*np.pi, np1)    # 38
+    teta = np.linspace(0, 2*np.pi, 5)    # 38
     for te in teta:
+      print(te)
       x = x0 + a*np.cos(te)
       y = y0 + b*np.sin(te)
-      print(np.around((x,y),2))
-      x2 = x
-      if x2 < 320:
-        x2 = x2+40
-      y2 = y
-      if y2 < 240:
-        y2 = y2 + 32
-      xx.append(x2)
-      yy.append(y2)
+      xx.append(x)
+      yy.append(y)
       screen.blit(tux, (x, y))
 
-    screen.blit(tux, (320-20, 240-16))
-    np1 = np1-1
+    np1 = len(xx)
     print(np1)
 
-
+''' 
    
     for i in np.arange(np1):
       x0 = xx[i]
+      if x0 < 320:
+        x0 = x0+40
       y0 = yy[i]
       for j in np.arange(i+1,np1):
         print((i,j))
         x2 = xx[j]
+        if xx[j] < 320:
+          x2 = x2 +20
         pygame.draw.line(screen,line_color, (x0, y0), (x2, yy[j]))
-    screen.blit(tux, (320-20, 240-16))
+'''     
+
     pygame.display.flip()
 
-    pygame.image.save(screen, 'clusterio.png') 
     # el bucle principal del juego
     while True:
         # Posibles entradas del teclado y mouse
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
+
 if __name__ == "__main__":
     main()
 
